@@ -1,5 +1,13 @@
 <template>
   <div>
+
+    <div class="black-bg">
+      <div class="white-bg">
+        <h4>상세 페이지</h4>
+        <p>내용</p>
+      </div>
+    </div>
+
     <div class="menu">
       <a href="/">Home</a>
       <a href="/products">Products</a>
@@ -7,7 +15,7 @@
     </div>
     <img alt="Vue logo" src="./assets/logo.png">
     <div :key="showing" v-for="showing in products">
-      <img :src="`./images/room${showing.id}.jpg`" alt="">
+      <img :src="`./images/room${showing.id}.jpg`" alt="img" class="room-img">
       <h3>{{ showing.title }}</h3>
       <p>가격: {{ showing.price }}</p>
       <button @click="showing.report++">허위매물신고</button><span>신고수 : {{showing.report}}건</span>
@@ -38,6 +46,10 @@ export default {
 </script>
 
 <style>
+.room-img {
+  width: 100%;
+  margin-top: 40px;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -56,4 +68,33 @@ export default {
   padding: 10px;
   text-decoration: none;
 }
+
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+#app {
+  margin: 0;
+}
+
+div {
+  box-sizing: border-box;
+}
+.black-bg {
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  padding: 20px;
+}
+.white-bg {
+  width: 100%;
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+}
+
 </style>
