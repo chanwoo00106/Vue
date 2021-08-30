@@ -7,8 +7,10 @@
     </div>
     <img alt="Vue logo" src="./assets/logo.png">
     <div :key="showing" v-for="showing in products">
+      <img :src="`./images/room${showing.id}.jpg`" alt="">
       <h3>{{ showing.title }}</h3>
       <p>가격: {{ showing.price }}</p>
+      <button @click="showing.report++">허위매물신고</button><span>신고수 : {{showing.report}}건</span>
     </div>
   </div>
 </template>
@@ -19,14 +21,19 @@ export default {
   data(){
     return {
       products: [
-        {title: '강진군 마량면 청자로', price: '100000000000원'},
-        {title: '완도군', price: '10원'},
-        {title: '충주마을', price: '공짜'},
-        {title: '임실', price: '치즈 하나 사면 공짜'},
-        {title: '인천마을', price: '평당 1원'}
+        {id: 0, title: '강진군 마량면 청자로', price: '100000000000원', report: 0},
+        {id: 1, title: '완도군', price: '10원', report: 19348528},
+        {id: 2, title: '충주마을', price: '공짜', report: 790820820},
+        {id: 3, title: '임실', price: '치즈 하나 사면 공짜', report: 892972978408},
+        {id: 4, title: '인천마을', price: '평당 1원', report: 497}
       ],
     }
-  }
+  },
+  methods: {
+    increase() {
+      console.log(this.products)
+    }
+  },
 }
 </script>
 
