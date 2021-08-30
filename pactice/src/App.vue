@@ -1,10 +1,11 @@
 <template>
   <div>
 
-    <div class="black-bg">
+    <div v-if="modal" class="black-bg">
       <div class="white-bg">
         <h4>상세 페이지</h4>
         <p>내용</p>
+        <button @click="modal=!modal">모달 닫기</button>
       </div>
     </div>
 
@@ -20,6 +21,7 @@
       <p>가격: {{ showing.price }}</p>
       <button @click="showing.report++">허위매물신고</button><span>신고수 : {{showing.report}}건</span>
     </div>
+    <button @click="modal=!modal">모달 띄우기</button>
   </div>
 </template>
 
@@ -28,6 +30,7 @@ export default {
   name: 'App',
   data(){
     return {
+      modal: false,
       products: [
         {id: 0, title: '강진군 마량면 청자로', price: '100000000000원', report: 0},
         {id: 1, title: '완도군', price: '10원', report: 19348528},
