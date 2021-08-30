@@ -1,15 +1,31 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <div class="menu">
+      <a href="/">Home</a>
+      <a href="/products">Products</a>
+      <a href="/about">About</a>
+    </div>
+    <img alt="Vue logo" src="./assets/logo.png">
+    <div :key="showing" v-for="showing in products">
+      <h3>{{ showing.title }}</h3>
+      <p>가격: {{ showing.price }}</p>
+    </div>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
 export default {
   name: 'App',
-  components: {
-    HelloWorld
+  data(){
+    return {
+      products: [
+        {title: '강진군 마량면 청자로', price: '100000000000원'},
+        {title: '완도군', price: '10원'},
+        {title: '충주마을', price: '공짜'},
+        {title: '임실', price: '치즈 하나 사면 공짜'},
+        {title: '인천마을', price: '평당 1원'}
+      ],
+    }
   }
 }
 </script>
@@ -22,5 +38,15 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+.menu {
+  background: darkslateblue;
+  padding: 15px;
+  border-radius: 5px;
+}
+.menu a {
+  color: white;
+  padding: 10px;
+  text-decoration: none;
 }
 </style>
