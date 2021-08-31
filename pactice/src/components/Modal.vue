@@ -16,7 +16,7 @@
         </select> -->
 
         <input v-model.number="month">
-        <p>{{ month }}개월 선택, 가격 : {{ room.price }}</p>
+        <p>{{ month }}개월 선택, 가격 : {{ room.price * month }}</p>
         <button @click="$emit('closeModal')">모달 닫기</button>
       </div>
     </div>

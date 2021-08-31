@@ -15,8 +15,14 @@
     <!-- 위 아래 코드는 같음 -->
     <!-- <Discount v-bind="obj" /> -->
 
-    
     <Discount />
+
+
+    <button @click="priceSort">가격순 정렬</button>
+    <button @click="priceResort">가격역순 정렬</button>
+    <button @click="charSort">가나다순 정렬</button>
+
+
 
     <img alt="Vue logo" src="./assets/logo.png">
 
@@ -38,20 +44,42 @@ export default {
       rooms: data,
       clickNum: 0,
       obj: { name: 'chan', age: 17 }
+    } 
+  },
+  methods: {
+    priceSort() {
+      this.rooms.sort((a,b) => a.price - b.price);
+    },
+    priceResort(){
+      this.rooms.sort((a,b) => b.price - a.price);
+    },
+    charSort() {
+      
     }
-  }
+  },
 }
 </script>
 
 <style>
-.fade-enter-from {
+.fade-leave-from {
+  opacity: 1;
+}
+.fade-leave-active {
+  transition: all 1s;
+}
+.fade-leave-to {
   opacity: 0;
+}
+
+
+.fade-enter-from {
+  transform: translateY(-1000px);
 }
 .fade-enter-active {
   transition: all 1s;
 }
 .fade-enter-to {
-  opacity: 1;
+  transform: translateY(0);
 }
 
 #app {
