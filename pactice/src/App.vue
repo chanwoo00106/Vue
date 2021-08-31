@@ -16,6 +16,9 @@
       <a href="/products">Products</a>
       <a href="/about">About</a>
     </div>
+
+    <Discount />
+
     <img alt="Vue logo" src="./assets/logo.png">
 
     <div :key="showing" v-for="(showing, i) in rooms">
@@ -38,7 +41,9 @@
 
 <script>
 import data from './data';
+import Discount from './components/Discount.vue';
 export default {
+  components: { Discount },
   name: 'App',
   data(){
     return {
@@ -71,7 +76,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 .menu {
   background: darkslateblue;
@@ -89,10 +93,6 @@ body {
   padding: 0;
   width: 100%;
   height: 100%;
-}
-
-#app {
-  margin: 0;
 }
 
 div {
