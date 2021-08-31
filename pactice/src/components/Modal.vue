@@ -30,6 +30,17 @@ export default {
             month: 1,
         }
     },
+    watch: {
+        month(a){
+            if (a > 13){
+                alert('ㄴㄴㄴ');
+                this.month = 13;
+            }
+            else if (typeof(a) === 'string' ){
+                this.month = 1;
+            }
+        }
+    },
     props: {
         room : Object,
         modal : Boolean,

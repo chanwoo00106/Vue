@@ -1,7 +1,9 @@
 <template>
   <div>
 
-    <Modal @closeModal="modal = !modal" v-if="modal" :room="rooms[clickNum]" :modal="modal" />
+    <transition name="fade">
+      <Modal @closeModal="modal = !modal" v-if="modal" :room="rooms[clickNum]" :modal="modal" />
+    </transition>
 
     <div class="menu">
       <a href="/">Home</a>
@@ -42,8 +44,15 @@ export default {
 </script>
 
 <style>
-
-
+.fade-enter-from {
+  opacity: 0;
+}
+.fade-enter-active {
+  transition: all 1s;
+}
+.fade-enter-to {
+  opacity: 1;
+}
 
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -78,6 +87,5 @@ div {
   width: 100%;
   margin-top: 40px;
 }
-
 
 </style>
