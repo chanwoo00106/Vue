@@ -3,7 +3,9 @@
 
     <div v-if="modal" class="black-bg">
       <div class="white-bg">
+        <img class="modal-img" :src="rooms[clickNum].url" alt="img">
         <h4>{{ rooms[clickNum].title }}</h4>
+        <p>{{rooms[clickNum].content}}</p>
         <p>가격 : {{rooms[clickNum].price}}</p>
         <button @click="modal = !modal">모달 닫기</button>
       </div>
@@ -58,6 +60,11 @@ export default {
   width: 100%;
   margin-top: 40px;
 }
+
+.modal-img {
+  height: 80%;
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
