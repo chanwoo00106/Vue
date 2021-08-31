@@ -3,9 +3,9 @@
 
     <div v-if="modal" class="black-bg">
       <div class="white-bg">
-        <h4>상세 페이지</h4>
-        <p>내용</p>
-        <button @click="modal=!modal">모달 닫기</button>
+        <h4>{{ rooms[clickNum].title }}</h4>
+        <p>가격 : {{rooms[clickNum].price}}</p>
+        <button @click="modal = !modal">모달 닫기</button>
       </div>
     </div>
 
@@ -15,13 +15,22 @@
       <a href="/about">About</a>
     </div>
     <img alt="Vue logo" src="./assets/logo.png">
-    <div :key="showing" v-for="showing in products">
+
+    <div :key="showing" v-for="(showing, i) in rooms">
       <img :src="showing.url" alt="img" class="room-img">
-      <h3>{{ showing.title }}</h3>
+      <h4 @click="modal = !modal; clickNum = i">{{ showing.title }}</h4>
       <p>가격: {{ showing.price }}</p>
-      <button @click="showing.report++">허위매물신고</button><span>신고수 : {{showing.report}}건</span>
+
+      <div v-if="showing.title !== '강진군 마량면 청자로'">
+        <button @click="showing.report++">허위매물신고</button>
+        <span>신고수 : {{showing.report}}건</span>
+      </div>
+      <div v-else>
+        <button @click="alram">허위매물신고</button>
+        <span>신고수 : {{showing.report}}건</span>
+      </div>
+      
     </div>
-    <button @click="modal=!modal">모달 띄우기</button>
   </div>
 </template>
 
@@ -32,12 +41,13 @@ export default {
   data(){
     return {
       modal: false,
-      products: data,
+      rooms: data,
+      clickNum: 0,
     }
   },
   methods: {
-    increase() {
-      console.log(this.products)
+    alram() {
+      alert('신고 하실 수 없습니다');
     }
   },
 }
