@@ -1,15 +1,7 @@
 <template>
   <div>
 
-    <div v-if="modal" class="black-bg">
-      <div class="white-bg">
-        <img class="modal-img" :src="rooms[clickNum].url" alt="img">
-        <h4>{{ rooms[clickNum].title }}</h4>
-        <p>{{rooms[clickNum].content}}</p>
-        <p>가격 : {{rooms[clickNum].price}}</p>
-        <button @click="modal = !modal">모달 닫기</button>
-      </div>
-    </div>
+    <Modal v-if="modal" :rooms="rooms" :modal="modal" :clickNum="clickNum" />
 
     <div class="menu">
       <a href="/">Home</a>
@@ -42,8 +34,9 @@
 <script>
 import data from './data';
 import Discount from './components/Discount.vue';
+import Modal from './components/Modal.vue'
 export default {
-  components: { Discount },
+  components: { Discount, Modal },
   name: 'App',
   data(){
     return {
@@ -61,14 +54,8 @@ export default {
 </script>
 
 <style>
-.room-img {
-  width: 100%;
-  margin-top: 40px;
-}
 
-.modal-img {
-  height: 80%;
-}
+
 
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -98,18 +85,6 @@ body {
 div {
   box-sizing: border-box;
 }
-.black-bg {
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  position: fixed;
-  padding: 20px;
-}
-.white-bg {
-  width: 100%;
-  background: white;
-  border-radius: 8px;
-  padding: 20px;
-}
+
 
 </style>
