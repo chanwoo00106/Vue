@@ -2,6 +2,7 @@ import { createWebHistory, createRouter } from "vue-router";
 import List from './components/List.vue'
 import Home from './components/Home.vue'
 import Detail from './components/Detail.vue'
+import Error from './components/Error.vue'
 
 const routes = [
   {
@@ -13,8 +14,12 @@ const routes = [
     component: Home,
   },
   {
-    path: '/detail/:id',
+    path: '/detail/:id(\\d+)',// 숫자만 가능 (정규식이라고 함)
     component: Detail,
+  },
+  {
+      path: '/:anything(.*)',
+      component: Error
   }
 ];
 
