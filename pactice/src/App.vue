@@ -15,16 +15,12 @@
     <!-- 위 아래 코드는 같음 -->
     <!-- <Discount v-bind="obj" /> -->
 
-    <Discount />
+    <Discount v-if="showDiscount" />
 
 
     <button @click="priceSort">가격순 정렬</button>
     <button @click="priceResort">가격역순 정렬</button>
     <button @click="charSort">가나다순 정렬</button>
-
-
-
-    <img alt="Vue logo" src="./assets/logo.png">
 
      <Goods @openModal="modal = !modal; clickNum = $event" :room="rooms[i]" @increase="rooms[i].report++" v-for="(showing, i) in rooms" :key="showing" /> 
   </div>
@@ -40,11 +36,19 @@ export default {
   name: 'App',
   data(){
     return {
+      showDiscount: true,
       modal: false,
       rooms: data,
       clickNum: 0,
       obj: { name: 'chan', age: 17 }
     } 
+  },
+  mounted() {
+    // 마운트 된 후
+    setTimeout(() => this.showDiscount = false, 2000);
+  },
+  beforeMount() {
+    // 마운트 되기 전
   },
   methods: {
     priceSort() {
