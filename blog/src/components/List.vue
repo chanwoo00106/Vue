@@ -11,7 +11,7 @@
 export default {
     name: 'List',
     props: {
-        blogData: Object
+        blogData: Array
     },
     methods: {
         click() {
