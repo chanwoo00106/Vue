@@ -15,7 +15,7 @@
     <!-- 위 아래 코드는 같음 -->
     <!-- <Discount v-bind="obj" /> -->
 
-    <Discount v-if="showDiscount" />
+    <Discount :discount="discount" />
 
 
     <button @click="priceSort">가격순 정렬</button>
@@ -36,7 +36,7 @@ export default {
   name: 'App',
   data(){
     return {
-      showDiscount: true,
+      discount: 30,
       modal: false,
       rooms: data,
       clickNum: 0,
@@ -45,7 +45,11 @@ export default {
   },
   mounted() {
     // 마운트 된 후
-    setTimeout(() => this.showDiscount = false, 2000);
+    const timer = setInterval(() => {
+      this.discount--
+      if (this.discount <= 0) clearInterval(timer);
+    }, 1000);
+
   },
   beforeMount() {
     // 마운트 되기 전
