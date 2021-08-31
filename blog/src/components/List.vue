@@ -1,6 +1,6 @@
 <template>
   <div>
-      <div v-for="blog in blogData.blogData" :key="blog">
+      <div v-for="blog in blogData" :key="blog">
           <h5>{{ blog.title }}</h5>
           <p>{{  blog.date  }}</p>
       </div>

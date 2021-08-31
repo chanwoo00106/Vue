@@ -3,17 +3,16 @@
     <Header />
     <h3 class="container mt-4">그냥 블로그입니다.</h3>
     <p>- 아무말이나 적으세요 -</p>
-    <List :blogData={blogData} />
+    <router-view :blogData="blogData"></router-view>
   </div>
 </template>
 
 <script>
 import Header from './components/Header.vue'
-import List from './components/List.vue'
 import data from './assets/data';
 
 export default {
-  components: { Header, List },
+  components: { Header },
   name: 'App',
   data(){
     return{
