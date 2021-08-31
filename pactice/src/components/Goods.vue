@@ -1,7 +1,7 @@
 <template>
     <div>
         <img :src="room.url" alt="img" class="room-img">
-        <h4 @click="$emit('openModal')">{{ room.title }}</h4>
+        <h4 @click="send">{{ room.title }}</h4>
         <p>가격: {{ room.price }}</p>
 
         <div v-if="room.title !== '강진군 마량면 청자로'">
@@ -24,6 +24,9 @@ export default {
     methods: {
         alram() {
             alert('신고 하실 수 없습니다');
+        },
+        send() {
+            this.$emit('openModal', this.room.id)
         }
     },
 }
