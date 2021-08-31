@@ -22,10 +22,6 @@ export default {
 </script>
 
 <style>
-.room-img {
-  width: 100%;
-  margin-top: 40px;
-}
 .modal-img {
   height: 80%;
 }
