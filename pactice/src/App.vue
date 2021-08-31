@@ -1,7 +1,7 @@
 <template>
   <div>
 
-    <Modal @closeModal="modal = !modal" v-if="modal" :rooms="rooms" :modal="modal" :clickNum="clickNum" />
+    <Modal @closeModal="modal = !modal" v-if="modal" :room="rooms[clickNum]" :modal="modal" />
 
     <div class="menu">
       <a href="/">Home</a>
@@ -18,7 +18,7 @@
 
     <img alt="Vue logo" src="./assets/logo.png">
 
-     <Goods @openModal="modal = !modal" :room="rooms[i]" @increase="rooms[i].report++" v-for="(showing, i) in rooms" :key="showing" /> 
+     <Goods @openModal="modal = !modal; clickNum = $event" :room="rooms[i]" @increase="rooms[i].report++" v-for="(showing, i) in rooms" :key="showing" /> 
   </div>
 </template>
 

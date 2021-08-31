@@ -1,11 +1,22 @@
 <template>
   <div class="black-bg">
       <div class="white-bg">
-        <img class="modal-img" :src="rooms[clickNum].url" alt="img">
-        <h4>{{ rooms[clickNum].title }}</h4>
-        <p>{{rooms[clickNum].content}}</p>
-        <input @input="month = $event.target.value" type="number">
-        <p>{{ month }}개월 선택, 가격 : {{rooms[clickNum].price}}</p>
+        <img class="modal-img" :src="room.url" alt="img">
+        <h4>{{ room.title }}</h4>
+        <p>{{room.content}}</p>
+        <!-- <input @input="month = $event.target.value" type="number"> -->
+
+        <!-- <textarea v-model="month" cols="30" rows="10"></textarea> -->
+
+        <!-- <select v-model="month">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+        </select> -->
+
+        <input v-model.number="month">
+        <p>{{ month }}개월 선택, 가격 : {{ room.price }}</p>
         <button @click="$emit('closeModal')">모달 닫기</button>
       </div>
     </div>
@@ -20,7 +31,7 @@ export default {
         }
     },
     props: {
-        rooms : Array,
+        room : Object,
         modal : Boolean,
         clickNum: Number,
     }

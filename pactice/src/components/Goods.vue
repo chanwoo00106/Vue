@@ -3,7 +3,7 @@
         <img :src="room.url" alt="img" class="room-img">
         <h4 @click="send">{{ room.title }}</h4>
         <p>가격: {{ room.price }}</p>
-
+        
         <div v-if="room.title !== '강진군 마량면 청자로'">
             <button @click="$emit('increase')">허위매물신고</button>
             <span>신고수 : {{room.report}}건</span>
