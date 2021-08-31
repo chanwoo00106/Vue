@@ -1,11 +1,17 @@
 <template>
-  <div></div>
+  <div>{{data}}</div>
 </template>
 
 <script>
+import data from './assets/data'
 
 export default {
   name: 'App',
+  data() {
+    return {
+      data: data
+    }
+  }
 }
 </script>
 
