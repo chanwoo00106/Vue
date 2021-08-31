@@ -1,8 +1,6 @@
 <template>
   <div>
     <Header />
-    <h3 class="container mt-4">그냥 블로그입니다.</h3>
-    <p>- 아무말이나 적으세요 -</p>
     <router-view :blogData="blogData"></router-view>
   </div>
 </template>
