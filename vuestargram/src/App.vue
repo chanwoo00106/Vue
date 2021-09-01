@@ -11,9 +11,6 @@
       <img src="./assets/logo.png" class="logo" />
     </div>
 
-    <h4>안녕 {{$store.state.name}}</h4>
-    <button @click="$store.commit('changeName')"></button>
-
     <Container filter @write="text = $event" :data="data" :step="step" :imgUrl="imgUrl" />
 
     <button v-if="cnt <= 1 && step === 0" @click="more">더보기</button>
@@ -67,7 +64,6 @@ export default {
       const a = e.target.files
       const url = URL.createObjectURL(a[0])
       this.imgUrl = url
-      console.log(this.imgUrl)
       this.step++
     },
     publish() {

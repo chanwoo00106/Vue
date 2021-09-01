@@ -2,13 +2,16 @@ import { createStore } from 'vuex'
 
 const store = createStore({
     state(){
-    return {
-        name: 'byun'
-    }
+        return {
+            likes: 0,
+            clicked: false
+        }
     },
     mutations: {
-        changeName(state) {
-            state.name = 'chan'
+        increase(state) {
+            if (!state.clicked) state.likes++;
+            else state.likes--;
+            state.clicked = !state.clicked
         }
     }
 })
