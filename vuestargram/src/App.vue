@@ -12,6 +12,8 @@
 
     <Container :data="data" />
 
+    <button v-if="this.cnt <= 1" @click="more">더보기</button>
+
     <div class="footer">
       <ul class="footer-button-plus">
         <input type="file" id="file" class="inputfile" />
@@ -24,6 +26,7 @@
 <script>
 import data from './assets/data'
 import Container from './components/Container.vue'
+import axios from 'axios'
 
 
 export default {
@@ -31,9 +34,18 @@ export default {
   name: 'App',
   data() {
     return {
-      data: data
+      data: data,
+      cnt: 0
     }
-  }
+  },
+  methods: {
+    more() {
+      if (this.cnt <= 1) axios.get(`https://codingapple1.github.io/vue/more${this.cnt++}.json`)
+      .then(result => {
+        this.data.push(result.data)
+      })
+    }
+  },
 }
 </script>
 
