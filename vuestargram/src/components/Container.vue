@@ -5,11 +5,7 @@
         <div v-else-if="step === 1">
             <div class="upload-image" :style="`background-image: url(${imgUrl})`"></div>
             <div class="filters">
-                <div class="filter-1"></div>
-                <div class="filter-1"></div>
-                <div class="filter-1"></div>
-                <div class="filter-1"></div>
-                <div class="filter-1"></div>
+                <FilterBox :imgUrl="imgUrl" :filter="filters[i]" v-for="(filter, i) in filters" :key="filter"></FilterBox>
             </div>
         </div>
 
@@ -23,13 +19,23 @@
 </template>
 
 <script>
+import FilterBox from './FilterBox.vue'
 import Post from './Post.vue'
 export default {
-    components: { Post },
+    components: { Post, FilterBox },
     props: {
         data: Array,
         step: Number,
         imgUrl: String
+    },
+    data() {
+        return {
+            filters: [
+                "aden", "_1977", "brannan", "brooklyn", "clarendon", "earlybird", "gingham", "hudson", 
+                "inkwell", "kelvin", "lark", "lofi", "maven", "mayfair", "moon", "nashville", "perpetua", 
+                "reyes", "rise", "slumber", "stinson", "toaster", "valencia", "walden", "willow", "xpro2"
+            ]
+        }
     }
 }
 </script>
