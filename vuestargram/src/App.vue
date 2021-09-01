@@ -13,15 +13,14 @@
 
     <Container filter @write="text = $event" :data="data" :step="step" :imgUrl="imgUrl" />
 
-    <button v-if="cnt <= 1 && step === 0" @click="more">더보기</button>
-
     <div class="footer">
       <ul class="footer-button-plus">
         <input @change="upload" accept="image/*" type="file" id="file" class="inputfile" />
         <label for="file" class="input-plus">+</label>
       </ul>
     </div>
-
+    <p>{{$store.state.more}}</p>
+    <button @click="$store.dispatch('getData')">더보기 버튼</button>
 
     <!-- TAB -->
     <!-- <div v-if="step === 0">내용0</div>
@@ -37,7 +36,6 @@
 <script>
 import data from './assets/data'
 import Container from './components/Container.vue'
-import axios from 'axios'
 
 
 export default {
@@ -46,7 +44,6 @@ export default {
   data() {
     return {
       data: data,
-      cnt: 0,
       step: 0,
       imgUrl: '',
       text: '',
@@ -54,12 +51,6 @@ export default {
     }
   },
   methods: {
-    more() {
-      if (this.cnt <= 1) axios.get(`https://codingapple1.github.io/vue/more${this.cnt++}.json`)
-      .then(result => {
-        this.data.push(result.data)
-      })
-    },
     upload(e) {
       const a = e.target.files
       const url = URL.createObjectURL(a[0])
