@@ -5,18 +5,19 @@
         <li>Cancel</li>
       </ul>
       <ul class="header-button-right">
-        <li>Next</li>
+        <li v-if="step !== 2" @click="step++">Next</li>
+        <li v-else @click="publish">발행</li>
       </ul>
       <img src="./assets/logo.png" class="logo" />
     </div>
 
-    <Container :data="data" :step="step" />
+    <Container @write="text = $event" :data="data" :step="step" :imgUrl="imgUrl" />
 
-    <button v-if="this.cnt <= 1" @click="more">더보기</button>
+    <button v-if="cnt <= 1 && step === 0" @click="more">더보기</button>
 
     <div class="footer">
       <ul class="footer-button-plus">
-        <input type="file" id="file" class="inputfile" />
+        <input @change="upload" accept="image/*" type="file" id="file" class="inputfile" />
         <label for="file" class="input-plus">+</label>
       </ul>
     </div>
@@ -46,7 +47,9 @@ export default {
     return {
       data: data,
       cnt: 0,
-      step: 1
+      step: 0,
+      imgUrl: '',
+      text: ''
     }
   },
   methods: {
@@ -55,6 +58,28 @@ export default {
       .then(result => {
         this.data.push(result.data)
       })
+    },
+    upload(e) {
+      const a = e.target.files
+      const url = URL.createObjectURL(a[0])
+      this.imgUrl = url
+      console.log(this.imgUrl)
+      this.step++
+    },
+    publish() {
+      const now = new Date();
+      var add = {
+        name: "Kim Hyun",
+        userImage: "https://placeimg.com/100/100/arch",
+        postImage: this.imgUrl,
+        likes: 0,
+        date: `${String(now).slice(4, 7)} ${now.getDay()}`,
+        liked: false,
+        content: this.text,
+        filter: "perpetua"
+      }
+      this.data.unshift(add)
+      this.step = 0
     }
   },
 }

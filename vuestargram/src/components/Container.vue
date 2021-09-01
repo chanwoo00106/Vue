@@ -3,7 +3,7 @@
         <div  v-if="step === 0"><Post :data="data[i]" v-for="(a, i) in data" :key="i" /></div>
 
         <div v-else-if="step === 1">
-            <div class="upload-image"></div>
+            <div class="upload-image" :style="`background-image: url(${imgUrl})`"></div>
             <div class="filters">
                 <div class="filter-1"></div>
                 <div class="filter-1"></div>
@@ -14,9 +14,9 @@
         </div>
 
         <div v-else>
-            <div class="upload-image"></div>
+            <div class="upload-image" :style="`background-image: url(${imgUrl})`"></div>
             <div class="write">
-                <textarea class="write-box">write!</textarea>
+                <textarea @input="$emit('write', $event.target.value)" class="write-box">write!</textarea>
             </div>
         </div>
     </div>
@@ -28,7 +28,8 @@ export default {
     components: { Post },
     props: {
         data: Array,
-        step: Number
+        step: Number,
+        imgUrl: String
     }
 }
 </script>
