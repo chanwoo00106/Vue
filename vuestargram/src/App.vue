@@ -2,7 +2,7 @@
   <div>
     <div class="header">
       <ul class="header-button-left">
-        <li>Cancel</li>
+        <li v-if="step !== 0" @click="step--">Cancel</li>
       </ul>
       <ul class="header-button-right">
         <li v-if="step !== 2" @click="step++">Next</li>
@@ -11,7 +11,7 @@
       <img src="./assets/logo.png" class="logo" />
     </div>
 
-    <Container @write="text = $event" :data="data" :step="step" :imgUrl="imgUrl" />
+    <Container filter @write="text = $event" :data="data" :step="step" :imgUrl="imgUrl" />
 
     <button v-if="cnt <= 1 && step === 0" @click="more">더보기</button>
 
@@ -49,7 +49,8 @@ export default {
       cnt: 0,
       step: 0,
       imgUrl: '',
-      text: ''
+      text: '',
+      choiceFilter: '',
     }
   },
   methods: {
@@ -76,11 +77,16 @@ export default {
         date: `${String(now).slice(4, 7)} ${now.getDay()}`,
         liked: false,
         content: this.text,
-        filter: "perpetua"
+        filter: this.choiceFilter
       }
       this.data.unshift(add)
       this.step = 0
     }
+  },
+  mounted() {
+    this.emitter.on('changeFilter', x => {
+      this.choiceFilter = x;
+    });
   },
 }
 </script>

@@ -1,16 +1,18 @@
 <template>
     <div>
-        <div  v-if="step === 0"><Post :data="data[i]" v-for="(a, i) in data" :key="i" /></div>
+        <div v-if="step === 0"><Post :data="data[i]" v-for="(a, i) in data" :key="i" /></div>
 
         <div v-else-if="step === 1">
-            <div class="upload-image" :style="`background-image: url(${imgUrl})`"></div>
+            <div :class="choiceFilter" class="upload-image" :style="`background-image: url(${imgUrl})`"></div>
             <div class="filters">
-                <FilterBox :imgUrl="imgUrl" :filter="filters[i]" v-for="(filter, i) in filters" :key="filter"></FilterBox>
+                <FilterBox :imgUrl="imgUrl" :filter="filter" v-for="filter in filters" :key="filter">
+                    {{filter}}
+                </FilterBox>
             </div>
         </div>
 
         <div v-else>
-            <div class="upload-image" :style="`background-image: url(${imgUrl})`"></div>
+            <div :class="choiceFilter" class="upload-image" :style="`background-image: url(${imgUrl})`"></div>
             <div class="write">
                 <textarea @input="$emit('write', $event.target.value)" class="write-box">write!</textarea>
             </div>
@@ -26,7 +28,7 @@ export default {
     props: {
         data: Array,
         step: Number,
-        imgUrl: String
+        imgUrl: String,
     },
     data() {
         return {
@@ -34,9 +36,15 @@ export default {
                 "aden", "_1977", "brannan", "brooklyn", "clarendon", "earlybird", "gingham", "hudson", 
                 "inkwell", "kelvin", "lark", "lofi", "maven", "mayfair", "moon", "nashville", "perpetua", 
                 "reyes", "rise", "slumber", "stinson", "toaster", "valencia", "walden", "willow", "xpro2"
-            ]
+            ],
+            choiceFilter: ''
         }
-    }
+    },
+    mounted() {
+        this.emitter.on('changeFilter', x => {
+            this.choiceFilter = x
+        })
+    },
 }
 </script>
 
