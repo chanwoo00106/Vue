@@ -11,6 +11,8 @@
       <img src="./assets/logo.png" class="logo" />
     </div>
 
+    <h4>안녕 {{$store.state.name}}</h4>
+
     <Container filter @write="text = $event" :data="data" :step="step" :imgUrl="imgUrl" />
 
     <button v-if="cnt <= 1 && step === 0" @click="more">더보기</button>
