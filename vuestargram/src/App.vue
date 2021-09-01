@@ -1,7 +1,7 @@
 <template>
-  <div>
-    <p>{{now2}} {{counter}}</p>
-    <p>{{now()}} {{counter}}</p>
+  <div> 
+    <!-- <p>{{now2}} {{counter}}</p>
+    <p>{{now()}} {{counter}}</p> -->
     <button @click="counter++">counter</button>
     <div class="header">
       <ul class="header-button-left">
@@ -39,6 +39,7 @@
 <script>
 import data from './assets/data'
 import Container from './components/Container.vue'
+import {mapState} from 'vuex'
 
 
 export default {
@@ -84,7 +85,11 @@ export default {
     // 처음에 한 번만 실행하고 return된 값은 끝까지 간직함
     now2() {
       return new Date();
-    }
+    },
+    // name() {
+    //   return $store.state.likes
+    // }
+    ...mapState(['likes', 'clicked', 'more'])
   },
   mounted() {
     this.emitter.on('changeFilter', x => {
