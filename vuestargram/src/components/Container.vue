@@ -1,16 +1,16 @@
 <template>
     <div>
-        <Post />
-        <Post/>
-        <Post/>
+        <Post :data="data[i]" v-for="(a, i) in data" :key="i" />
     </div>
 </template>
 
 <script>
 import Post from './Post.vue'
 export default {
-  components: { Post },
-
+    components: { Post },
+    props: {
+        data: Array
+    }
 }
 </script>
 

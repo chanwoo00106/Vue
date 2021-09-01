@@ -10,7 +10,7 @@
       <img src="./assets/logo.png" class="logo" />
     </div>
 
-    <Container />
+    <Container :data="data" />
 
     <div class="footer">
       <ul class="footer-button-plus">
