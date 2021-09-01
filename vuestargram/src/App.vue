@@ -1,5 +1,8 @@
 <template>
   <div>
+    <p>{{now2}} {{counter}}</p>
+    <p>{{now()}} {{counter}}</p>
+    <button @click="counter++">counter</button>
     <div class="header">
       <ul class="header-button-left">
         <li v-if="step !== 0" @click="step--">Cancel</li>
@@ -48,6 +51,7 @@ export default {
       imgUrl: '',
       text: '',
       choiceFilter: '',
+      counter: 0,
     }
   },
   methods: {
@@ -71,6 +75,15 @@ export default {
       }
       this.data.unshift(add)
       this.step = 0
+    },
+    now() {
+      return new Date();
+    }
+  },
+  computed: {
+    // 처음에 한 번만 실행하고 return된 값은 끝까지 간직함
+    now2() {
+      return new Date();
     }
   },
   mounted() {

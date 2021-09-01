@@ -26,7 +26,8 @@ const store = createStore({
                 context.commit('setMore', result.data)
             })
         }
-    }
+    },
+    
 })
 
 export default store
