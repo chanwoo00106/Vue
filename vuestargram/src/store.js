@@ -1,11 +1,16 @@
 import { createStore } from 'vuex'
 
 const store = createStore({
-  state(){
+    state(){
     return {
-      name: 'chan'
+        name: 'byun'
     }
-  },
+    },
+    mutations: {
+        changeName(state) {
+            state.name = 'chan'
+        }
+    }
 })
 
 export default store

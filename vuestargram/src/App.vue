@@ -12,6 +12,7 @@
     </div>
 
     <h4>안녕 {{$store.state.name}}</h4>
+    <button @click="$store.commit('changeName')"></button>
 
     <Container filter @write="text = $event" :data="data" :step="step" :imgUrl="imgUrl" />
 
